@@ -31,7 +31,10 @@ contract Napker {
     {
         contract_napker = msg.sender;
     }
-    
+
+    // function addAsset (uint id) public {
+    //     n_napkers[id] = id.value;
+    // }
     
     function getId( uint napker, uint id ) constant returns (uint v, uint next_id, uint prev_id )
     {
