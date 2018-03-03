@@ -10,7 +10,7 @@ contract Napker {
     
     uint public n_napkers = 0;      // total number of registered domains
     uint public root_napkers = 0;    // name of the first domain in the linked list
-    address napker = 0; // owner
+    address contract_napker = 0; // owner
     
     struct Id {                     // Id record. Double linked list. Allows to delete ID
         uint value;
@@ -19,7 +19,7 @@ contract Napker {
     }
     
     struct Napker {                 // Domain record. Linked list. 
-        address owner;              
+        address contract_napker;              
         uint asset;    
         uint root_id;           
         mapping (uint => Id) ids;   // Map of the ID's
@@ -29,7 +29,7 @@ contract Napker {
     
     function Napkin()
     {
-        napker = msg.sender;
+        contract_napker = msg.sender;
     }
     
     
@@ -42,19 +42,14 @@ contract Napker {
         prev_id = i.prev_id;
     }
     
-    function getNapker( uint domain ) constant returns 
-        (address owner, uint asset, uint root_id )
+    function getNapker( uint napker ) constant returns 
+        (address contract_napker, uint asset, uint root_id )
     {
         Napker d = napkers[ napker ];
         
-        owner = d.owner;
+        contract_napker = d.contract_napker;
         asset = d.asset;
         root_id = d.root_id;    
     }
     
-  
-    if( msg.value > 0 ) // If transaction has any money...
-    {
-        if( !msg.sender.send( msg.value ) ) throw; // ... it is a mistake, so send it back
-    }
 }
